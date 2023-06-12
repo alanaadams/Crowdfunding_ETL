@@ -1,18 +1,20 @@
-﻿-- Exported from QuickDBD: https://www.quickdatabasediagrams.com/
--- Link to schema: https://app.quickdatabasediagrams.com/#/d/5V6Zn4
--- NOTE! If you have used non-SQL datatypes in your design, you will have to change these here.
-
--- Modify this code to update the DB schema diagram.
--- To reset the sample schema, replace everything with
--- two dots ('..' - without quotes).
-
-CREATE TABLE "contacts" (
+CREATE TABLE "campaign" (
+    "cf_id" INT   NOT NULL,
     "contact_id" INT   NOT NULL,
-    "first_name" VARCHAR   NOT NULL,
-    "last_name" VARCHAR   NOT NULL,
-    "email" VARCHAR   NOT NULL,
-    CONSTRAINT "pk_contacts" PRIMARY KEY (
-        "contact_id"
+    "company_name" VARCHAR   NOT NULL,
+    "description" VARCHAR   NOT NULL,
+    "goal" FLOAT   NOT NULL,
+    "pledged" FLOAT   NOT NULL,
+    "outcome" VARCHAR   NOT NULL,
+    "backers_count" INT   NOT NULL,
+    "country" VARCHAR   NOT NULL,
+    "currency" VARCHAR   NOT NULL,
+    "launched_date" DATE   NOT NULL,
+    "end_date" DATE   NOT NULL,
+    "category_id" VARCHAR   NOT NULL,
+    "subcategory_id" VARCHAR   NOT NULL,
+    CONSTRAINT "pk_campaign" PRIMARY KEY (
+        "cf_id"
      )
 );
 
@@ -32,23 +34,13 @@ CREATE TABLE "subcategory" (
      )
 );
 
-CREATE TABLE "campaign" (
-    "cf_id" INT   NOT NULL,
+CREATE TABLE "contacts" (
     "contact_id" INT   NOT NULL,
-    "company_name" VARCHAR   NOT NULL,
-    "description" VARCHAR   NOT NULL,
-    "goal" DOUBLE   NOT NULL,
-    "pledged" DOUBLE   NOT NULL,
-    "outcome" VARCHAR   NOT NULL,
-    "backers_count" INT   NOT NULL,
-    "country" VARCHAR   NOT NULL,
-    "currency" VARCHAR   NOT NULL,
-    "launched_date" DATE   NOT NULL,
-    "end_date" DATE   NOT NULL,
-    "category_id" VARCHAR   NOT NULL,
-    "subcategory_id" VARCHAR   NOT NULL,
-    CONSTRAINT "pk_campaign" PRIMARY KEY (
-        "cf_id"
+    "first_name" VARCHAR   NOT NULL,
+    "last_name" VARCHAR   NOT NULL,
+    "email" VARCHAR   NOT NULL,
+    CONSTRAINT "pk_contacts" PRIMARY KEY (
+        "contact_id"
      )
 );
 
@@ -60,4 +52,9 @@ REFERENCES "category" ("category_id");
 
 ALTER TABLE "campaign" ADD CONSTRAINT "fk_campaign_subcategory_id" FOREIGN KEY("subcategory_id")
 REFERENCES "subcategory" ("subcategory_id");
+
+SELECT * FROM campaign;
+SELECT * FROM contacts;
+SELECT * FROM category;
+SELECT * FROM subcategory;
 
